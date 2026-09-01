@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Annonces - Ziryab Tec</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         ESPACE ADMIN
+         ========================================== -->
+
+    <div class="admin-layout">
+
+        <!-- ==========================================
+             MENU À GAUCHE
+             ========================================== -->
+
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <h2>Ziryab Tec</h2>
+                <p>Administration</p>
+            </div>
+
+            <nav class="admin-nav">
+    <a href="dashboard.html">
+        🏠 Tableau de bord
+    </a>
+    <a href="dashboard.html#formations">
+        🎓 Formations
+    </a>
+    <a href="dashboard.html#formateurs">
+        👨‍🏫 Formateurs
+    </a>
+    <a href="gestion-annonces.html" class="active">
+        📢 Annonces
+    </a>
+    <a href="gestion-utilisateurs.html">
+        👥 Utilisateurs
+    </a>
+</nav>
+
+            <div class="admin-footer">
+                <a href="../../index.html">
+                    ← Retour au site
+                </a>
+                <a href="#" id="logoutBtn">
+                    🚪 Déconnexion
+                </a>
+            </div>
+        </aside>
+
+        <!-- ==========================================
+             CONTENU
+             ========================================== -->
+
+        <main class="admin-main">
+
+            <!-- HEADER -->
+            <div class="admin-header">
+                <div>
+                    <h1>Gestion des annonces</h1>
+                    <p>Publier, modifier ou supprimer les annonces du site.</p>
+                </div>
+                <button class="btn btn-primary" id="addAnnonceBtn">
+                    + Ajouter une annonce
+                </button>
+            </div>
+
+            <!-- Zone d'affichage des messages -->
+            <div id="alertContainer"></div>
+
+            <!-- RECHERCHE -->
+            <div class="search-filters">
+                <div class="search-bar">
+                    <span class="search-icon">🔎</span>
+                    <input 
+                        type="text" 
+                        id="searchAnnonce" 
+                        placeholder="Rechercher une annonce..."
+                        oninput="filtrerAnnonces()"
+                    >
+                </div>
+
+                <div class="filters">
+                    <select id="filterStatut" class="filter-select" onchange="filtrerAnnonces()">
+                        <option value="">Tous les statuts</option>
+                        <option value="publie">Publiées</option>
+                        <option value="brouillon">Brouillons</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- TABLEAU DES ANNONCES -->
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="annoncesTableBody">
+                        <!-- Rempli dynamiquement par JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- ==========================================
+         MODAL AJOUT / MODIFICATION D'ANNONCE
+         ========================================== -->
+
+    <div class="modal" id="annonceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="annonceModalTitle">Ajouter une annonce</h2>
+                <button class="modal-close" id="closeAnnonceModalBtn">×</button>
+            </div>
+
+            <form id="annonceForm">
+                <input type="hidden" id="annonceId">
+
+                <!-- TITRE -->
+                <div class="form-group">
+                    <label for="annonceTitre">Titre de l'annonce *</label>
+                    <input 
+                        type="text" 
+                        id="annonceTitre" 
+                        placeholder="Ex : Nouvelle session AWS" 
+                        required
+                    >
+                </div>
+
+                <!-- DESCRIPTION -->
+                <div class="form-group">
+                    <label for="annonceDescription">Description *</label>
+                    <textarea 
+                        id="annonceDescription" 
+                        rows="4" 
+                        placeholder="Décrivez votre annonce..."
+                        required
+                    ></textarea>
+                </div>
+
+                <!-- DATE -->
+                <div class="form-group">
+                    <label for="annonceDate">Date de publication *</label>
+                    <input 
+                        type="date" 
+                        id="annonceDate" 
+                        required
+                    >
+                </div>
+
+                <!-- STATUT -->
+                <div class="form-group">
+                    <label for="annonceStatut">Statut *</label>
+                    <select id="annonceStatut" required>
+                        <option value="publie">Publiée</option>
+                        <option value="brouillon">Brouillon</option>
+                    </select>
+                </div>
+
+                <!-- BOUTONS -->
+                <div style="display:flex; gap:1rem; justify-content:flex-end;">
+                    <button 
+                        type="button" 
+                        class="btn btn-outline" 
+                        id="cancelAnnonceModalBtn"
+                    >
+                        Annuler
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Enregistrer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
+
+    <script src="../../js/data.js"></script>
+    <script>
+        // ==========================================
+        // INITIALISATION
+        // ==========================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            afficherAnnonces();
+            initialiserModalAnnonce();
+            initialiserDeconnexion();
+        });
+
+        // ==========================================
+        // AFFICHER LES ANNONCES
+        // ==========================================
+
+        function afficherAnnonces(annonces) {
+            const container = document.getElementById('annoncesTableBody');
+            if (!container) return;
+
+            const toutesAnnonces = annonces || DataManager.getAnnonces();
+            container.innerHTML = '';
+
+            if (toutesAnnonces.length === 0) {
+                container.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            Aucune annonce trouvée
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            // Trier par date (plus récentes en premier)
+            toutesAnnonces.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            toutesAnnonces.forEach(function(annonce) {
+                const ligne = document.createElement('tr');
+                ligne.innerHTML = `
+                    <td>${annonce.id}</td>
+                    <td><strong>${annonce.titre}</strong></td>
+                    <td>${annonce.description.substring(0, 80)}...</td>
+                    <td>${annonce.date}</td>
+                    <td>
+                        <span class="status-badge status-${annonce.statut}">
+                            ${annonce.statut === 'publie' ? 'Publiée' : 'Brouillon'}
+                        </span>
+                    </td>
+                    <td>
+                        <button 
+                            class="btn btn-sm btn-outline" 
+                            onclick="modifierAnnonce(${annonce.id})"
+                        >
+                            ✏️ Modifier
+                        </button>
+                        <button 
+                            class="btn btn-sm ${annonce.statut === 'publie' ? 'btn-warning' : 'btn-success'}" 
+                            onclick="basculerStatutAnnonce(${annonce.id})"
+                        >
+                            ${annonce.statut === 'publie' ? '📥 Dépublier' : '📤 Publier'}
+                        </button>
+                        <button 
+                            class="btn btn-sm btn-danger" 
+                            onclick="supprimerAnnonce(${annonce.id})"
+                        >
+                            🗑️ Supprimer
+                        </button>
+                    </td>
+                `;
+                container.appendChild(ligne);
+            });
+        }
+
+        // ==========================================
+        // FILTRER LES ANNONCES
+        // ==========================================
+
+        function filtrerAnnonces() {
+            const searchTerm = document.getElementById('searchAnnonce').value.toLowerCase().trim();
+            const statutFilter = document.getElementById('filterStatut').value;
+            
+            const annonces = DataManager.getAnnonces();
+            
+            const resultats = annonces.filter(function(annonce) {
+                const correspondTitre = annonce.titre.toLowerCase().includes(searchTerm) ||
+                                       annonce.description.toLowerCase().includes(searchTerm);
+                const correspondStatut = statutFilter === '' || annonce.statut === statutFilter;
+                
+                return correspondTitre && correspondStatut;
+            });
+            
+            afficherAnnonces(resultats);
+        }
+
+        // ==========================================
+        // INITIALISER LE MODAL
+        // ==========================================
+
+        function initialiserModalAnnonce() {
+            const modal = document.getElementById('annonceModal');
+            const addButton = document.getElementById('addAnnonceBtn');
+            const closeButton = document.getElementById('closeAnnonceModalBtn');
+            const cancelButton = document.getElementById('cancelAnnonceModalBtn');
+            const form = document.getElementById('annonceForm');
+
+            if (!modal || !addButton || !closeButton || !cancelButton || !form) return;
+
+            addButton.addEventListener('click', function() {
+                ouvrirModalAjoutAnnonce();
+            });
+
+            closeButton.addEventListener('click', function() {
+                modal.classList.remove('active');
+            });
+
+            cancelButton.addEventListener('click', function() {
+                modal.classList.remove('active');
+            });
+
+            form.addEventListener('submit', enregistrerAnnonce);
+        }
+
+        // ==========================================
+        // OUVRIR LE MODAL D'AJOUT
+        // ==========================================
+
+        function ouvrirModalAjoutAnnonce() {
+            const modal = document.getElementById('annonceModal');
+            const form = document.getElementById('annonceForm');
+            
+            form.reset();
+            document.getElementById('annonceId').value = '';
+            document.getElementById('annonceModalTitle').textContent = 'Ajouter une annonce';
+            
+            // Date du jour par défaut
+            document.getElementById('annonceDate').value = new Date().toISOString().split('T')[0];
+            
+            modal.classList.add('active');
+        }
+
+        // ==========================================
+        // MODIFIER UNE ANNONCE
+        // ==========================================
+
+        function modifierAnnonce(id) {
+            const annonce = DataManager.getAnnonceById(id);
+            if (!annonce) {
+                afficherMessage('Annonce introuvable.', 'error');
+                return;
+            }
+
+            document.getElementById('annonceId').value = annonce.id;
+            document.getElementById('annonceTitre').value = annonce.titre;
+            document.getElementById('annonceDescription').value = annonce.description;
+            document.getElementById('annonceDate').value = annonce.date;
+            document.getElementById('annonceStatut').value = annonce.statut;
+            
+            document.getElementById('annonceModalTitle').textContent = 'Modifier l\'annonce';
+            document.getElementById('annonceModal').classList.add('active');
+        }
+
+        // ==========================================
+        // ENREGISTRER UNE ANNONCE
+        // ==========================================
+
+        function enregistrerAnnonce(event) {
+            event.preventDefault();
+
+            const id = document.getElementById('annonceId').value;
+            const titre = document.getElementById('annonceTitre').value.trim();
+            const description = document.getElementById('annonceDescription').value.trim();
+            const date = document.getElementById('annonceDate').value;
+            const statut = document.getElementById('annonceStatut').value;
+
+            // Validation
+            if (!titre || !description || !date || !statut) {
+                afficherMessage('Veuillez remplir tous les champs.', 'error');
+                return;
+            }
+
+            const annonceData = {
+                titre: titre,
+                description: description,
+                date: date,
+                statut: statut
+            };
+
+            if (id === '') {
+                // Nouvelle annonce
+                DataManager.addAnnonce(annonceData);
+                afficherMessage('✅ Annonce ajoutée avec succès !', 'success');
+            } else {
+                // Modification
+                DataManager.updateAnnonce(Number(id), annonceData);
+                afficherMessage('✅ Annonce modifiée avec succès !', 'success');
+            }
+
+            document.getElementById('annonceModal').classList.remove('active');
+            afficherAnnonces();
+        }
+
+        // ==========================================
+        // BASCULER LE STATUT
+        // ==========================================
+
+        function basculerStatutAnnonce(id) {
+            const annonce = DataManager.getAnnonceById(id);
+            if (!annonce) return;
+
+            const action = annonce.statut === 'publie' ? 'dépublier' : 'publier';
+            const confirmation = confirm(`Voulez-vous vraiment ${action} cette annonce ?`);
+            
+            if (!confirmation) return;
+
+            DataManager.toggleAnnonceStatus(id);
+            afficherAnnonces();
+            afficherMessage(`✅ Annonce ${action === 'publier' ? 'publiée' : 'dépubliée'} avec succès !`, 'success');
+        }
+
+        // ==========================================
+        // SUPPRIMER UNE ANNONCE
+        // ==========================================
+
+        function supprimerAnnonce(id) {
+            const annonce = DataManager.getAnnonceById(id);
+            if (!annonce) return;
+
+            const confirmation = confirm(`Voulez-vous vraiment supprimer l'annonce : "${annonce.titre}" ?`);
+            
+            if (!confirmation) return;
+
+            DataManager.deleteAnnonce(id);
+            afficherAnnonces();
+            afficherMessage('✅ Annonce supprimée avec succès !', 'success');
+        }
+
+        // ==========================================
+        // AFFICHER UN MESSAGE
+        // ==========================================
+
+        function afficherMessage(message, type = 'success') {
+            const container = document.getElementById('alertContainer');
+            
+            container.innerHTML = `
+                <div class="alert alert-${type}">
+                    ${message}
+                </div>
+            `;
+            
+            setTimeout(function() {
+                container.innerHTML = '';
+            }, 3000);
+        }
+
+        // ==========================================
+        // DÉCONNEXION
+        // ==========================================
+
+        function initialiserDeconnexion() {
+            const logoutButton = document.getElementById('logoutBtn');
+            if (!logoutButton) return;
+
+            logoutButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                localStorage.removeItem('currentUser');
+                window.location.href = '../../index.html';
+            });
+        }
+    </script>
+
+</body>
+
+</html>

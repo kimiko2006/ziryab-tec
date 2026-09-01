@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Utilisateurs - Ziryab Tec</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         ESPACE ADMIN
+         ========================================== -->
+
+    <div class="admin-layout">
+
+        <!-- ==========================================
+             MENU À GAUCHE
+             ========================================== -->
+
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <h2>Ziryab Tec</h2>
+                <p>Administration</p>
+            </div>
+
+            <nav class="admin-nav">
+    <a href="dashboard.html">
+        🏠 Tableau de bord
+    </a>
+    <a href="dashboard.html#formations">
+        🎓 Formations
+    </a>
+    <a href="dashboard.html#formateurs">
+        👨‍🏫 Formateurs
+    </a>
+    <a href="gestion-annonces.html">
+        📢 Annonces
+    </a>
+    <a href="gestion-utilisateurs.html" class="active">
+        👥 Utilisateurs
+    </a>
+</nav>
+
+            <div class="admin-footer">
+                <a href="../../index.html">
+                    ← Retour au site
+                </a>
+                <a href="#" id="logoutBtn">
+                    🚪 Déconnexion
+                </a>
+            </div>
+        </aside>
+
+        <!-- ==========================================
+             CONTENU
+             ========================================== -->
+
+        <main class="admin-main">
+
+            <!-- HEADER -->
+            <div class="admin-header">
+                <div>
+                    <h1>Gestion des utilisateurs</h1>
+                    <p>Consulter et gérer les comptes candidats.</p>
+                </div>
+            </div>
+
+            <!-- Zone d'affichage des messages -->
+            <div id="alertContainer"></div>
+
+            <!-- STATISTIQUES RAPIDES -->
+            <div class="stats-grid" style="margin-bottom: 2rem;">
+                <div class="stat-card">
+                    <h3>Total candidats</h3>
+                    <div class="stat-number" id="totalCandidats">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Comptes actifs</h3>
+                    <div class="stat-number" id="candidatsActifs">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Comptes inactifs</h3>
+                    <div class="stat-number" id="candidatsInactifs">0</div>
+                </div>
+            </div>
+
+            <!-- RECHERCHE -->
+            <div class="search-filters">
+                <div class="search-bar">
+                    <span class="search-icon">🔎</span>
+                    <input 
+                        type="text" 
+                        id="searchUser" 
+                        placeholder="Rechercher un utilisateur par nom ou email..."
+                        oninput="filtrerUtilisateurs()"
+                    >
+                </div>
+
+                <div class="filters">
+                    <select id="filterRole" class="filter-select" onchange="filtrerUtilisateurs()">
+                        <option value="">Tous les rôles</option>
+                        <option value="candidat">Candidats</option>
+                        <option value="admin">Administrateurs</option>
+                    </select>
+
+                    <select id="filterStatut" class="filter-select" onchange="filtrerUtilisateurs()">
+                        <option value="">Tous les statuts</option>
+                        <option value="active">Actifs</option>
+                        <option value="inactive">Inactifs</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- TABLEAU DES UTILISATEURS -->
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom complet</th>
+                            <th>Email</th>
+                            <th>Rôle</th>
+                            <th>Date d'inscription</th>
+                            <th>Formations</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Rempli dynamiquement par JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- ==========================================
+         MODAL DÉTAILS UTILISATEUR
+         ========================================== -->
+
+    <div class="modal" id="userDetailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Détails de l'utilisateur</h2>
+                <button class="modal-close" onclick="fermerModalDetails()">×</button>
+            </div>
+
+            <div id="userDetailsContent">
+                <!-- Rempli dynamiquement par JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
+
+    <script src="../../js/data.js"></script>
+    <script>
+        // ==========================================
+        // INITIALISATION
+        // ==========================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            afficherUtilisateurs();
+            afficherStats();
+            initialiserDeconnexion();
+        });
+
+        // ==========================================
+        // AFFICHER LES STATISTIQUES
+        // ==========================================
+
+        function afficherStats() {
+            const users = DataManager.getUsers();
+            const candidats = users.filter(u => u.role === 'candidat');
+            
+            document.getElementById('totalCandidats').textContent = candidats.length;
+            document.getElementById('candidatsActifs').textContent = 
+                candidats.filter(u => u.status === 'active').length;
+            document.getElementById('candidatsInactifs').textContent = 
+                candidats.filter(u => u.status === 'inactive').length;
+        }
+
+        // ==========================================
+        // AFFICHER LES UTILISATEURS
+        // ==========================================
+
+        function afficherUtilisateurs(users) {
+            const container = document.getElementById('usersTableBody');
+            if (!container) return;
+
+            const tousUsers = users || DataManager.getUsers();
+            container.innerHTML = '';
+
+            if (tousUsers.length === 0) {
+                container.innerHTML = `
+                    <tr>
+                        <td colspan="8" class="text-center">
+                            Aucun utilisateur trouvé
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tousUsers.forEach(function(user) {
+                // Compter les formations de l'utilisateur
+                const inscriptions = DataManager.getInscriptionsByUser(user.id);
+                const nbFormations = inscriptions.length;
+
+                const ligne = document.createElement('tr');
+                ligne.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>
+                        <strong>${user.prenom} ${user.nom}</strong>
+                    </td>
+                    <td>${user.email}</td>
+                    <td>
+                        <span class="badge-role">
+                            ${user.role === 'admin' ? '👑 Admin' : '👤 Candidat'}
+                        </span>
+                    </td>
+                    <td>${user.dateCreation || 'N/A'}</td>
+                    <td>
+                        <span class="badge-formation">
+                            ${nbFormations} formation(s)
+                        </span>
+                    </td>
+                    <td>
+                        <span class="status-badge status-${user.status}">
+                            ${user.status === 'active' ? 'Actif' : 'Inactif'}
+                        </span>
+                    </td>
+                    <td>
+                        <button 
+                            class="btn btn-sm btn-outline" 
+                            onclick="voirDetails(${user.id})"
+                        >
+                            👁️ Voir
+                        </button>
+                        ${user.role !== 'admin' ? `
+                            <button 
+                                class="btn btn-sm ${user.status === 'active' ? 'btn-warning' : 'btn-success'}" 
+                                onclick="basculerStatutUser(${user.id})"
+                            >
+                                ${user.status === 'active' ? '🔴 Désactiver' : '🟢 Activer'}
+                            </button>
+                            <button 
+                                class="btn btn-sm btn-danger" 
+                                onclick="supprimerUser(${user.id})"
+                            >
+                                🗑️ Supprimer
+                            </button>
+                        ` : ''}
+                    </td>
+                `;
+                container.appendChild(ligne);
+            });
+        }
+
+        // ==========================================
+        // FILTRER LES UTILISATEURS
+        // ==========================================
+
+        function filtrerUtilisateurs() {
+            const searchTerm = document.getElementById('searchUser').value.toLowerCase().trim();
+            const roleFilter = document.getElementById('filterRole').value;
+            const statutFilter = document.getElementById('filterStatut').value;
+            
+            const users = DataManager.getUsers();
+            
+            const resultats = users.filter(function(user) {
+                const nomComplet = `${user.prenom} ${user.nom}`.toLowerCase();
+                const correspondRecherche = nomComplet.includes(searchTerm) ||
+                                          user.email.toLowerCase().includes(searchTerm);
+                const correspondRole = roleFilter === '' || user.role === roleFilter;
+                const correspondStatut = statutFilter === '' || user.status === statutFilter;
+                
+                return correspondRecherche && correspondRole && correspondStatut;
+            });
+            
+            afficherUtilisateurs(resultats);
+        }
+
+        // ==========================================
+        // VOIR LES DÉTAILS D'UN UTILISATEUR
+        // ==========================================
+
+        function voirDetails(id) {
+            const user = DataManager.getUserById(id);
+            if (!user) return;
+
+            const inscriptions = DataManager.getInscriptionsByUser(id);
+            
+            let formationsHtml = '';
+            if (inscriptions.length === 0) {
+                formationsHtml = '<p style="color: var(--gray);">Aucune formation inscrite</p>';
+            } else {
+                formationsHtml = inscriptions.map(inscription => {
+                    const formation = DataManager.getFormationById(inscription.formationId);
+                    if (!formation) return '';
+                    return `
+                        <div style="
+                            background: var(--beige-light);
+                            padding: 1rem;
+                            border-radius: var(--border-radius);
+                            margin-bottom: 0.5rem;
+                        ">
+                            <p><strong>${formation.nom}</strong></p>
+                            <p style="font-size: 0.9rem; color: var(--gray);">
+                                ${formation.categorie} | ${formation.niveau}
+                            </p>
+                            <p style="font-size: 0.9rem; color: var(--gray);">
+                                Inscrit le : ${inscription.dateInscription}
+                            </p>
+                            <span class="status-badge status-${inscription.statut}">
+                                ${inscription.statut}
+                            </span>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            document.getElementById('userDetailsContent').innerHTML = `
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="
+                        width: 80px;
+                        height: 80px;
+                        background: var(--beige);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 2rem;
+                        font-weight: bold;
+                        color: var(--blue-accent);
+                        margin: 0 auto 1rem;
+                        border: 3px solid var(--blue-accent);
+                    ">
+                        ${user.prenom.charAt(0)}${user.nom.charAt(0)}
+                    </div>
+                    <h3>${user.prenom} ${user.nom}</h3>
+                    <p style="color: var(--gray);">${user.email}</p>
+                    <span class="badge-role">
+                        ${user.role === 'admin' ? '👑 Administrateur' : '👤 Candidat'}
+                    </span>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="margin-bottom: 1rem;">📋 Informations</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <p style="color: var(--gray); font-size: 0.9rem;">Prénom</p>
+                            <p><strong>${user.prenom}</strong></p>
+                        </div>
+                        <div>
+                            <p style="color: var(--gray); font-size: 0.9rem;">Nom</p>
+                            <p><strong>${user.nom}</strong></p>
+                        </div>
+                        <div>
+                            <p style="color: var(--gray); font-size: 0.9rem;">Email</p>
+                            <p><strong>${user.email}</strong></p>
+                        </div>
+                        <div>
+                            <p style="color: var(--gray); font-size: 0.9rem;">Date d'inscription</p>
+                            <p><strong>${user.dateCreation || 'N/A'}</strong></p>
+                        </div>
+                        ${user.telephone ? `
+                            <div>
+                                <p style="color: var(--gray); font-size: 0.9rem;">Téléphone</p>
+                                <p><strong>${user.telephone}</strong></p>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+
+                <div>
+                    <h4 style="margin-bottom: 1rem;">🎓 Formations inscrites</h4>
+                    ${formationsHtml}
+                </div>
+            `;
+
+            document.getElementById('userDetailsModal').classList.add('active');
+        }
+
+        function fermerModalDetails() {
+            document.getElementById('userDetailsModal').classList.remove('active');
+        }
+
+        // ==========================================
+        // BASCULER LE STATUT D'UN UTILISATEUR
+        // ==========================================
+
+        function basculerStatutUser(id) {
+            const user = DataManager.getUserById(id);
+            if (!user) return;
+
+            const action = user.status === 'active' ? 'désactiver' : 'activer';
+            const confirmation = confirm(`Voulez-vous vraiment ${action} le compte de ${user.prenom} ${user.nom} ?`);
+            
+            if (!confirmation) return;
+
+            DataManager.toggleUserStatus(id);
+            afficherUtilisateurs();
+            afficherStats();
+            afficherMessage(`✅ Compte ${action === 'activer' ? 'activé' : 'désactivé'} avec succès !`, 'success');
+        }
+
+        // ==========================================
+        // SUPPRIMER UN UTILISATEUR
+        // ==========================================
+
+        function supprimerUser(id) {
+            const user = DataManager.getUserById(id);
+            if (!user) return;
+
+            const confirmation = confirm(`Voulez-vous vraiment supprimer le compte de ${user.prenom} ${user.nom} ?\nCette action est irréversible.`);
+            
+            if (!confirmation) return;
+
+            DataManager.deleteUser(id);
+            afficherUtilisateurs();
+            afficherStats();
+            afficherMessage('✅ Utilisateur supprimé avec succès !', 'success');
+        }
+
+        // ==========================================
+        // AFFICHER UN MESSAGE
+        // ==========================================
+
+        function afficherMessage(message, type = 'success') {
+            const container = document.getElementById('alertContainer');
+            
+            container.innerHTML = `
+                <div class="alert alert-${type}">
+                    ${message}
+                </div>
+            `;
+            
+            setTimeout(function() {
+                container.innerHTML = '';
+            }, 3000);
+        }
+
+        // ==========================================
+        // DÉCONNEXION
+        // ==========================================
+
+        function initialiserDeconnexion() {
+            const logoutButton = document.getElementById('logoutBtn');
+            if (!logoutButton) return;
+
+            logoutButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                localStorage.removeItem('currentUser');
+                window.location.href = '../../index.html';
+            });
+        }
+    </script>
+
+</body>
+<script src="../../js/animations.js"></script>
+</html>

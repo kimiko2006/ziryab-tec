@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partenaires - Ziryab Tec</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">ZT</span>
+                <span>Ziryab Tec</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="formations.html">Formations</a></li>
+                <li><a href="formateurs.html">Formateurs</a></li>
+                <li><a href="partenaires.html" class="active">Partenaires</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="apropos.html">À propos</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="connexion.html" class="btn btn-outline">Connexion</a>
+                <a href="inscription.html" class="btn btn-primary">Créer un compte</a>
+            </div>
+
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" style="min-height: 400px;">
+        <div class="hero-content">
+            <h1>Nos Partenaires Technologiques</h1>
+            <p>Nous collaborons avec les technologies les plus demandées sur le marché du travail.</p>
+        </div>
+        <div class="hero-image">
+            <div class="hero-placeholder" style="height: 300px;">
+                <span class="hero-icon">🤝</span>
+                <p>Partenaires de confiance</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTENAIRES -->
+    <section style="padding: 4rem 5%; background: var(--white);">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">
+            Technologies & Partenaires
+        </h2>
+
+        <div class="partners-grid" style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        ">
+            <!-- Python -->
+            <div class="partner-card">
+                <div class="partner-icon">🐍</div>
+                <h3>Python</h3>
+                <p>Langage de programmation pour l'IA et la Data Science</p>
+            </div>
+
+            <!-- React -->
+            <div class="partner-card">
+                <div class="partner-icon">⚛️</div>
+                <h3>React</h3>
+                <p>Bibliothèque JavaScript pour interfaces modernes</p>
+            </div>
+
+            <!-- Next.js -->
+            <div class="partner-card">
+                <div class="partner-icon">▲</div>
+                <h3>Next.js</h3>
+                <p>Framework React pour applications web performantes</p>
+            </div>
+
+            <!-- Docker -->
+            <div class="partner-card">
+                <div class="partner-icon">🐳</div>
+                <h3>Docker</h3>
+                <p>Conteneurisation et déploiement d'applications</p>
+            </div>
+
+            <!-- AWS -->
+            <div class="partner-card">
+                <div class="partner-icon">☁️</div>
+                <h3>AWS</h3>
+                <p>Leader mondial du cloud computing</p>
+            </div>
+
+            <!-- TypeScript -->
+            <div class="partner-card">
+                <div class="partner-icon">📘</div>
+                <h3>TypeScript</h3>
+                <p>JavaScript typé pour applications robustes</p>
+            </div>
+
+            <!-- Node.js -->
+            <div class="partner-card">
+                <div class="partner-icon">🟢</div>
+                <h3>Node.js</h3>
+                <p>JavaScript côté serveur</p>
+            </div>
+
+            <!-- PostgreSQL -->
+            <div class="partner-card">
+                <div class="partner-icon">🐘</div>
+                <h3>PostgreSQL</h3>
+                <p>Base de données relationnelle puissante</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- POURQUOI CES PARTENAIRES -->
+    <section class="why-us">
+        <h2>Pourquoi ces technologies ?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Forte demande</h3>
+                <p>Ces technologies sont les plus recherchées par les employeurs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Standards internationaux</h3>
+                <p>Utilisées par les plus grandes entreprises mondiales.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3>Employabilité</h3>
+                <p>Nos formations vous préparent aux métiers les plus demandés.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>Prêt à maîtriser ces technologies ?</h2>
+        <p>Rejoignez nos formations et devenez expert.</p>
+        <a href="formations.html" class="btn btn-primary">Voir nos formations</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Ziryab Tec</h3>
+                <p>Centre de formation IT certifiant</p>
+                <p>Formations en IA, Cloud & Cybersécurité</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>📧 contact@ziryabtec.com</p>
+                <p>📞 +212 5 22 00 00 00</p>
+                <p>📍 Casablanca, Maroc</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="formations.html">Formations</a></li>
+                    <li><a href="formateurs.html">Formateurs</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Ziryab Tec. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+    </script>
+
+</body>
+
+</html>

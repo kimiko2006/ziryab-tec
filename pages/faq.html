@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Ziryab Tec</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">ZT</span>
+                <span>Ziryab Tec</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="formations.html">Formations</a></li>
+                <li><a href="formateurs.html">Formateurs</a></li>
+                <li><a href="partenaires.html">Partenaires</a></li>
+                <li><a href="faq.html" class="active">FAQ</a></li>
+                <li><a href="apropos.html">À propos</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="connexion.html" class="btn btn-outline">Connexion</a>
+                <a href="inscription.html" class="btn btn-primary">Créer un compte</a>
+            </div>
+
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" style="min-height: 350px;">
+        <div class="hero-content">
+            <h1>Foire Aux Questions</h1>
+            <p>Trouvez les réponses à toutes vos questions sur nos formations.</p>
+        </div>
+        <div class="hero-image">
+            <div class="hero-placeholder" style="height: 250px;">
+                <span class="hero-icon">❓</span>
+                <p>Besoin d'aide ?</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="padding: 4rem 5%; background: var(--white);">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">
+            Questions fréquentes
+        </h2>
+
+        <div class="faq-container" style="max-width: 800px; margin: 0 auto;">
+
+            <!-- Question 1 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>Comment s'inscrire à une formation ?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        Pour vous inscrire à une formation, suivez ces étapes :
+                    </p>
+                    <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Créez un compte sur notre plateforme</li>
+                        <li>Connectez-vous à votre espace personnel</li>
+                        <li>Parcourez le catalogue des formations</li>
+                        <li>Cliquez sur "S'inscrire" sur la formation choisie</li>
+                        <li>Confirmez votre inscription</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>Les formations sont-elles en présentiel ?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        Oui, nous proposons des formations en présentiel dans nos locaux à Casablanca. 
+                        Les salles sont équipées de matériel moderne pour garantir des conditions 
+                        d'apprentissage optimales.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>Proposez-vous des formations à distance ?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        Oui, la plupart de nos formations sont également disponibles à distance. 
+                        Vous pouvez suivre les cours en direct via notre plateforme en ligne, 
+                        avec les mêmes formateurs et le même contenu pédagogique.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>Comment obtenir une certification ?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        À la fin de votre formation, vous passerez un examen de certification. 
+                        Nos formations sont conçues pour vous préparer aux certifications 
+                        internationales les plus reconnues :
+                    </p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>AWS Certified Solutions Architect</li>
+                        <li>Certified Ethical Hacker (CEH)</li>
+                        <li>Microsoft Azure certifications</li>
+                        <li>Google Cloud certifications</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>Quels sont les niveaux requis ?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        Nos formations sont adaptées à tous les niveaux :
+                    </p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li><strong>Débutant :</strong> Aucune expérience requise</li>
+                        <li><strong>Intermédiaire :</strong> Connaissances de base recommandées</li>
+                        <li><strong>Avancé :</strong> Expérience professionnelle requise</li>
+                    </ul>
+                    <p style="margin-top: 0.5rem;">
+                        Le niveau requis est indiqué sur chaque fiche de formation.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>Comment contacter Ziryab Tec ?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Vous pouvez nous contacter par :</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li><strong>Email :</strong> contact@ziryabtec.com</li>
+                        <li><strong>Téléphone :</strong> +212 5 22 00 00 00</li>
+                        <li><strong>Adresse :</strong> Casablanca, Maroc</li>
+                    </ul>
+                    <p style="margin-top: 0.5rem;">
+                        Notre équipe répond sous 24h ouvrées.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>Les formations sont-elles finançables ?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        Oui, nous proposons plusieurs options de financement :
+                    </p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Paiement en plusieurs fois</li>
+                        <li>Prise en charge par l'employeur</li>
+                        <li>Financement personnel</li>
+                        <li>Bourses pour les profils méritants</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>Y a-t-il un accompagnement après la formation ?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>
+                        Oui, nous offrons :
+                    </p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Aide à la préparation des entretiens</li>
+                        <li>Ateliers CV et LinkedIn</li>
+                        <li>Mise en relation avec nos entreprises partenaires</li>
+                        <li>Suivi post-formation pendant 6 mois</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>Vous avez d'autres questions ?</h2>
+        <p>Notre équipe est là pour vous aider.</p>
+        <a href="apropos.html" class="btn btn-primary">Contactez-nous</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Ziryab Tec</h3>
+                <p>Centre de formation IT certifiant</p>
+                <p>Formations en IA, Cloud & Cybersécurité</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>📧 contact@ziryabtec.com</p>
+                <p>📞 +212 5 22 00 00 00</p>
+                <p>📍 Casablanca, Maroc</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="formations.html">Formations</a></li>
+                    <li><a href="formateurs.html">Formateurs</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Ziryab Tec. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Fonction pour ouvrir/fermer les questions FAQ
+        function toggleFaq(button) {
+            // Fermer toutes les autres réponses
+            const allAnswers = document.querySelectorAll('.faq-answer');
+            const allIcons = document.querySelectorAll('.faq-icon');
+            
+            allAnswers.forEach(answer => {
+                if (answer !== button.nextElementSibling) {
+                    answer.classList.remove('active');
+                }
+            });
+            
+            allIcons.forEach(icon => {
+                if (icon !== button.querySelector('.faq-icon')) {
+                    icon.textContent = '+';
+                }
+            });
+            
+            // Ouvrir/fermer la réponse cliquée
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('.faq-icon');
+            
+            answer.classList.toggle('active');
+            icon.textContent = answer.classList.contains('active') ? '−' : '+';
+        }
+    </script>
+
+</body>
+
+</html>

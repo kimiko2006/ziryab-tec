@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - Ziryab Tec</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">ZT</span>
+                <span>Ziryab Tec</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="formations.html">Formations</a></li>
+                <li><a href="formateurs.html">Formateurs</a></li>
+                <li><a href="partenaires.html">Partenaires</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="apropos.html" class="active">À propos</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="connexion.html" class="btn btn-outline">Connexion</a>
+                <a href="inscription.html" class="btn btn-primary">Créer un compte</a>
+            </div>
+
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" style="min-height: 450px;">
+        <div class="hero-content">
+            <h1>À propos de Ziryab Tec</h1>
+            <p>« Ziryab Tec est né d'une vision simple : rendre l'éducation technologique de niveau mondial accessible à tous les talents marocains et francophones. »</p>
+        </div>
+        <div class="hero-image">
+            <div class="hero-placeholder" style="height: 350px;">
+                <span class="hero-icon">🎓</span>
+                <p>Notre mission</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOTRE MISSION -->
+    <section style="padding: 4rem 5%; background: var(--white);">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Notre Mission</h2>
+            <p style="font-size: 1.2rem; color: var(--gray); line-height: 1.8;">
+                Ziryab Tec est un centre de formation informatique dédié à l'excellence. 
+                Notre mission est de former la prochaine génération de professionnels 
+                de la technologie en leur offrant des formations certifiantes de haute 
+                qualité dans les domaines les plus demandés : Intelligence Artificielle, 
+                Cloud Computing et Cybersécurité.
+            </p>
+        </div>
+    </section>
+
+    <!-- NOTRE VISION -->
+    <section class="why-us">
+        <h2>Notre Vision</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <p style="font-size: 1.2rem; color: var(--gray); line-height: 1.8;">
+                Devenir le centre de formation de référence au Maroc et en Afrique 
+                francophone pour les métiers de la technologie. Nous voulons créer 
+                un écosystème d'apprentissage où chaque talent peut développer les 
+                compétences nécessaires pour réussir dans l'économie numérique mondiale.
+            </p>
+        </div>
+    </section>
+
+    <!-- NOS VALEURS -->
+    <section style="padding: 4rem 5%; background: var(--white);">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Nos Valeurs</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3>Excellence</h3>
+                <p>Nous visons l'excellence dans tout ce que nous faisons, de la qualité de nos formations à l'accompagnement de nos étudiants.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Accessibilité</h3>
+                <p>Nous croyons que l'éducation technologique de qualité doit être accessible à tous, quel que soit le parcours.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3>Innovation</h3>
+                <p>Nous restons à la pointe des technologies pour offrir des formations toujours pertinentes et actuelles.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Impact</h3>
+                <p>Nous mesurons notre succès par l'impact positif que nous avons sur la carrière de nos étudiants.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOTRE APPROCHE PÉDAGOGIQUE -->
+    <section class="why-us">
+        <h2>Notre Approche Pédagogique</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div style="display: grid; gap: 2rem;">
+                <div style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                    <h3 style="margin-bottom: 1rem; color: var(--blue-accent);">📚 Apprentissage par la pratique</h3>
+                    <p style="color: var(--gray);">
+                        70% de nos formations sont consacrées aux travaux pratiques. 
+                        Les étudiants travaillent sur des projets réels d'entreprise, 
+                        ce qui leur permet d'acquérir une expérience concrète.
+                    </p>
+                </div>
+                
+                <div style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                    <h3 style="margin-bottom: 1rem; color: var(--blue-accent);">👥 Suivi personnalisé</h3>
+                    <p style="color: var(--gray);">
+                        Chaque étudiant bénéficie d'un suivi individuel avec son formateur. 
+                        Des évaluations régulières permettent d'identifier les points à 
+                        améliorer et d'adapter le rythme d'apprentissage.
+                    </p>
+                </div>
+                
+                <div style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                    <h3 style="margin-bottom: 1rem; color: var(--blue-accent);">🎯 Orientation carrière</h3>
+                    <p style="color: var(--gray);">
+                        Nous accompagnons nos étudiants dans leur insertion professionnelle : 
+                        préparation aux entretiens, optimisation du CV, mise en relation 
+                        avec nos entreprises partenaires.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHIFFRES CLÉS -->
+    <section style="padding: 4rem 5%; background: var(--white);">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Ziryab Tec en chiffres</h2>
+        
+        <div class="stats-grid" style="max-width: 900px; margin: 0 auto;">
+            <div class="stat-card">
+                <h3>Formations</h3>
+                <div class="stat-number">4+</div>
+                <small>Certifiantes</small>
+            </div>
+            <div class="stat-card">
+                <h3>Formateurs</h3>
+                <div class="stat-number">3+</div>
+                <small>Experts certifiés</small>
+            </div>
+            <div class="stat-card">
+                <h3>Étudiants</h3>
+                <div class="stat-number">100+</div>
+                <small>Formés</small>
+            </div>
+            <div class="stat-card">
+                <h3>Taux de réussite</h3>
+                <div class="stat-number">95%</div>
+                <small>Certification</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>Rejoignez l'aventure Ziryab Tec</h2>
+        <p>Développez vos compétences et construisez votre avenir dans la tech.</p>
+        <a href="inscription.html" class="btn btn-primary">Créer un compte</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Ziryab Tec</h3>
+                <p>Centre de formation IT certifiant</p>
+                <p>Formations en IA, Cloud & Cybersécurité</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>📧 contact@ziryabtec.com</p>
+                <p>📞 +212 5 22 00 00 00</p>
+                <p>📍 Casablanca, Maroc</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="formations.html">Formations</a></li>
+                    <li><a href="formateurs.html">Formateurs</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="partenaires.html">Partenaires</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Réseaux sociaux</h3>
+                <div class="social-links">
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Ziryab Tec. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+    </script>
+
+</body>
+
+</html>

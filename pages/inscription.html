@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - Ziryab Tec</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         HEADER
+         ========================================== -->
+
+    <header class="header">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">ZT</span>
+                <span>Ziryab Tec</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="formations.html">Formations</a></li>
+                <li><a href="formateurs.html">Formateurs</a></li>
+                <li><a href="partenaires.html">Partenaires</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="apropos.html">À propos</a></li>
+            </ul>
+
+            <div class="nav-actions" id="navActions">
+                <select class="language-selector">
+                    <option value="fr">FR</option>
+                    <option value="en">EN</option>
+                </select>
+                <a href="connexion.html" class="btn btn-outline">Connexion</a>
+                <a href="inscription.html" class="btn btn-primary">Créer un compte</a>
+            </div>
+
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==========================================
+         FORMULAIRE D'INSCRIPTION
+         ========================================== -->
+
+    <main style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 4rem 5%; background: var(--beige-light);">
+
+        <div class="form-container" style="max-width: 600px; width: 100%;">
+            
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">Créer un compte</h1>
+                <p style="color: var(--gray);">Rejoignez Ziryab Tec et accédez à nos formations certifiantes</p>
+            </div>
+
+            <!-- Zone d'affichage des messages -->
+            <div id="alertContainer"></div>
+
+            <!-- Formulaire -->
+            <form id="inscriptionForm" onsubmit="inscrireUtilisateur(event)">
+                
+                <!-- PRÉNOM -->
+                <div class="form-group">
+                    <label for="prenom">Prénom *</label>
+                    <input 
+                        type="text" 
+                        id="prenom" 
+                        placeholder="Ex : Karim" 
+                        required
+                        autocomplete="given-name"
+                    >
+                </div>
+
+                <!-- NOM -->
+                <div class="form-group">
+                    <label for="nom">Nom *</label>
+                    <input 
+                        type="text" 
+                        id="nom" 
+                        placeholder="Ex : Benali" 
+                        required
+                        autocomplete="family-name"
+                    >
+                </div>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+                    <label for="email">Adresse email *</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        placeholder="Ex : karim.benali@email.com" 
+                        required
+                        autocomplete="email"
+                    >
+                </div>
+
+                <!-- TÉLÉPHONE -->
+                <div class="form-group">
+                    <label for="telephone">Téléphone (optionnel)</label>
+                    <input 
+                        type="tel" 
+                        id="telephone" 
+                        placeholder="Ex : +212 6 00 00 00 00"
+                        autocomplete="tel"
+                    >
+                </div>
+
+                <!-- MOT DE PASSE -->
+                <div class="form-group">
+                    <label for="motDePasse">Mot de passe *</label>
+                    <input 
+                        type="password" 
+                        id="motDePasse" 
+                        placeholder="Minimum 6 caractères" 
+                        required
+                        minlength="6"
+                        autocomplete="new-password"
+                    >
+                    <small style="color: var(--gray); display: block; margin-top: 0.25rem;">
+                        Le mot de passe doit contenir au moins 6 caractères
+                    </small>
+                </div>
+
+                <!-- CONFIRMATION MOT DE PASSE -->
+                <div class="form-group">
+                    <label for="confirmationMotDePasse">Confirmer le mot de passe *</label>
+                    <input 
+                        type="password" 
+                        id="confirmationMotDePasse" 
+                        placeholder="Retapez votre mot de passe" 
+                        required
+                        minlength="6"
+                        autocomplete="new-password"
+                    >
+                </div>
+
+                <!-- CONDITIONS -->
+                <div class="form-group" style="display: flex; align-items: flex-start; gap: 0.5rem;">
+                    <input 
+                        type="checkbox" 
+                        id="conditions" 
+                        required
+                        style="width: auto; margin-top: 0.25rem;"
+                    >
+                    <label for="conditions" style="margin-bottom: 0; font-weight: normal; font-size: 0.9rem;">
+                        J'accepte les <a href="#" style="color: var(--blue-accent);">conditions d'utilisation</a> 
+                        et la <a href="#" style="color: var(--blue-accent);">politique de confidentialité</a> *
+                    </label>
+                </div>
+
+                <!-- BOUTON D'INSCRIPTION -->
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                    Créer mon compte
+                </button>
+
+            </form>
+
+            <!-- LIEN VERS CONNEXION -->
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <p style="color: var(--gray);">
+                    Déjà inscrit ? 
+                    <a href="connexion.html" style="color: var(--blue-accent); text-decoration: none; font-weight: 600;">
+                        Connectez-vous
+                    </a>
+                </p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Ziryab Tec</h3>
+                <p>Centre de formation IT certifiant</p>
+                <p>Formations en IA, Cloud & Cybersécurité</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>📧 contact@ziryabtec.com</p>
+                <p>📞 +212 5 22 00 00 00</p>
+                <p>📍 Casablanca, Maroc</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="formations.html">Formations</a></li>
+                    <li><a href="formateurs.html">Formateurs</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Ziryab Tec. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
+
+    <script src="../js/data.js"></script>
+    <script>
+        // ==========================================
+        // INSCRIPTION UTILISATEUR
+        // ==========================================
+
+        function inscrireUtilisateur(event) {
+            event.preventDefault();
+
+            // Récupérer les valeurs
+            const prenom = document.getElementById('prenom').value.trim();
+            const nom = document.getElementById('nom').value.trim();
+            const email = document.getElementById('email').value.trim().toLowerCase();
+            const telephone = document.getElementById('telephone').value.trim();
+            const motDePasse = document.getElementById('motDePasse').value;
+            const confirmationMotDePasse = document.getElementById('confirmationMotDePasse').value;
+            const conditions = document.getElementById('conditions').checked;
+
+            // Validation
+            if (!prenom || !nom || !email || !motDePasse || !confirmationMotDePasse) {
+                afficherMessage('Veuillez remplir tous les champs obligatoires.', 'error');
+                return;
+            }
+
+            // Vérifier l'email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                afficherMessage('Veuillez entrer une adresse email valide.', 'error');
+                return;
+            }
+
+            // Vérifier la longueur du mot de passe
+            if (motDePasse.length < 6) {
+                afficherMessage('Le mot de passe doit contenir au moins 6 caractères.', 'error');
+                return;
+            }
+
+            // Vérifier la confirmation du mot de passe
+            if (motDePasse !== confirmationMotDePasse) {
+                afficherMessage('Les mots de passe ne correspondent pas.', 'error');
+                return;
+            }
+
+            // Vérifier les conditions
+            if (!conditions) {
+                afficherMessage('Veuillez accepter les conditions d\'utilisation.', 'error');
+                return;
+            }
+
+            // Vérifier si l'email existe déjà
+            const utilisateurExistant = DataManager.getUserByEmail(email);
+            if (utilisateurExistant) {
+                afficherMessage('Cet email est déjà utilisé. Veuillez vous connecter.', 'error');
+                return;
+            }
+
+            // Créer le nouvel utilisateur
+            const nouvelUtilisateur = {
+                nom: nom,
+                prenom: prenom,
+                email: email,
+                telephone: telephone || '',
+                password: motDePasse, // Dans une vraie application, ce serait hashé
+                role: 'candidat',
+                dateCreation: new Date().toISOString().split('T')[0],
+                status: 'active'
+            };
+
+            // Ajouter l'utilisateur
+            DataManager.addUser(nouvelUtilisateur);
+
+            // Afficher le message de succès
+            afficherMessage('✅ Inscription réussie ! Redirection vers la connexion...', 'success');
+
+            // Réinitialiser le formulaire
+            document.getElementById('inscriptionForm').reset();
+
+            // Rediriger vers la page de connexion après 2 secondes
+            setTimeout(function() {
+                window.location.href = 'connexion.html';
+            }, 2000);
+        }
+
+        // ==========================================
+        // AFFICHER UN MESSAGE
+        // ==========================================
+
+        function afficherMessage(message, type = 'success') {
+            const container = document.getElementById('alertContainer');
+            
+            container.innerHTML = `
+                <div class="alert alert-${type}">
+                    ${message}
+                </div>
+            `;
+
+            // Faire défiler jusqu'au message
+            container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Effacer le message après 5 secondes
+            setTimeout(function() {
+                container.innerHTML = '';
+            }, 5000);
+        }
+
+        // ==========================================
+        // MENU MOBILE
+        // ==========================================
+
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const hamburger = document.getElementById('hamburger');
+            
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+    </script>
+
+</body>
+
+</html>

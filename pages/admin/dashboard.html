@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Ziryab Tec</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         ESPACE ADMIN
+         ========================================== -->
+
+    <div class="admin-layout">
+
+        <!-- ==========================================
+             MENU À GAUCHE
+             ========================================== -->
+
+        <aside class="admin-sidebar">
+
+            <div class="admin-logo">
+                <h2>Ziryab Tec</h2>
+                <p>Administration</p>
+            </div>
+
+         <nav class="admin-nav">
+    <a href="dashboard.html" class="active">
+        🏠 Tableau de bord
+    </a>
+    <a href="dashboard.html#formations">
+        🎓 Formations
+    </a>
+    <a href="dashboard.html#formateurs">
+        👨‍🏫 Formateurs
+    </a>
+    <a href="gestion-annonces.html">
+        📢 Annonces
+    </a>
+    <a href="gestion-utilisateurs.html">
+        👥 Utilisateurs
+    </a>
+</nav>
+
+            <div class="admin-footer">
+                <a href="../../index.html">
+                    ← Retour au site
+                </a>
+                <a href="#" id="logoutBtn">
+                    🚪 Déconnexion
+                </a>
+            </div>
+
+        </aside>
+
+        <!-- ==========================================
+             CONTENU
+             ========================================== -->
+
+        <main class="admin-main">
+
+            <!-- HEADER -->
+            <div class="admin-header">
+                <div>
+                    <h1>Tableau de bord</h1>
+                    <p>Gestion de la plateforme Ziryab Tec</p>
+                </div>
+            </div>
+
+            <!-- ==========================================
+                 STATISTIQUES
+                 ========================================== -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <h3>Formations</h3>
+                    <div class="stat-number" id="formationsCount">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Formateurs</h3>
+                    <div class="stat-number" id="formateursCount">0</div>
+                    <small id="formateursActifs" style="color: #666;">0 actifs</small>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Utilisateurs</h3>
+                    <div class="stat-number" id="usersCount">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Annonces</h3>
+                    <div class="stat-number" id="annoncesCount">0</div>
+                </div>
+
+            </div>
+
+            <!-- ==========================================
+                 GESTION DES FORMATIONS
+                 ========================================== -->
+
+            <section id="formations" style="margin-bottom: 3rem;">
+
+                <div class="admin-header">
+                    <div>
+                        <h2>Gestion des formations</h2>
+                        <p>Ajouter, modifier ou supprimer une formation.</p>
+                    </div>
+                    <button class="btn btn-primary" id="addFormationBtn">
+                        + Ajouter une formation
+                    </button>
+                </div>
+
+                <!-- RECHERCHE -->
+                <div class="search-filters">
+                    <div class="search-bar">
+                        <span class="search-icon">🔎</span>
+                        <input type="text" id="searchFormation" placeholder="Rechercher une formation...">
+                    </div>
+
+                    <div class="filters">
+                        <select class="filter-select" id="filterCategory">
+                            <option value="">Toutes les catégories</option>
+                            <option value="Cloud">Cloud</option>
+                            <option value="Cybersécurité">Cybersécurité</option>
+                            <option value="Développement">Développement</option>
+                            <option value="Intelligence artificielle">Intelligence artificielle</option>
+                        </select>
+
+                        <select class="filter-select" id="filterMode">
+                            <option value="">Tous les modes</option>
+                            <option value="Présentiel">Présentiel</option>
+                            <option value="À distance">À distance</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- TABLEAU -->
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Formation</th>
+                                <th>Catégorie</th>
+                                <th>Niveau</th>
+                                <th>Mode</th>
+                                <th>Date</th>
+                                <th>Places</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="formationsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+
+            <!-- ==========================================
+                 GESTION DES FORMATEURS
+                 ========================================== -->
+
+            <section id="formateurs" style="margin-bottom: 3rem;">
+
+                <div class="admin-header">
+                    <div>
+                        <h2>Gestion des formateurs</h2>
+                        <p>Ajouter, modifier ou supprimer un formateur.</p>
+                    </div>
+                    <button class="btn btn-primary" id="addFormateurBtn">
+                        + Ajouter un formateur
+                    </button>
+                </div>
+
+                <!-- RECHERCHE -->
+                <div class="search-filters">
+                    <div class="search-bar">
+                        <span class="search-icon">🔎</span>
+                        <input type="text" id="searchFormateur" placeholder="Rechercher un formateur...">
+                    </div>
+                </div>
+
+                <!-- TABLEAU -->
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>Nom complet</th>
+                                <th>Spécialité</th>
+                                <th>Expérience</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="formateursTableBody">
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- ==========================================
+         MODAL FORMATION (AJOUT / MODIFICATION)
+         ========================================== -->
+
+    <div class="modal" id="formationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Ajouter une formation</h2>
+                <button class="modal-close" id="closeModalBtn">×</button>
+            </div>
+
+            <!-- FORMULAIRE FORMATION -->
+            <form id="formationForm">
+                <input type="hidden" id="formationId">
+
+                <!-- NOM -->
+                <div class="form-group">
+                    <label for="formationNom">Nom de la formation</label>
+                    <input type="text" id="formationNom" required>
+                </div>
+
+                <!-- DESCRIPTION -->
+                <div class="form-group">
+                    <label for="formationDescription">Description</label>
+                    <textarea id="formationDescription" required></textarea>
+                </div>
+
+                <!-- CATÉGORIE -->
+                <div class="form-group">
+                    <label for="formationCategorie">Catégorie</label>
+                    <select id="formationCategorie" required>
+                        <option value="">Choisir une catégorie</option>
+                        <option value="Cloud">Cloud</option>
+                        <option value="Cybersécurité">Cybersécurité</option>
+                        <option value="Développement">Développement</option>
+                        <option value="Intelligence artificielle">Intelligence artificielle</option>
+                    </select>
+                </div>
+
+                <!-- NIVEAU -->
+                <div class="form-group">
+                    <label for="formationNiveau">Niveau</label>
+                    <select id="formationNiveau" required>
+                        <option value="">Choisir un niveau</option>
+                        <option value="Débutant">Débutant</option>
+                        <option value="Intermédiaire">Intermédiaire</option>
+                        <option value="Avancé">Avancé</option>
+                    </select>
+                </div>
+
+                <!-- MODE -->
+                <div class="form-group">
+                    <label for="formationMode">Mode de formation</label>
+                    <select id="formationMode" required>
+                        <option value="">Choisir le mode</option>
+                        <option value="Présentiel">Présentiel</option>
+                        <option value="À distance">À distance</option>
+                    </select>
+                </div>
+
+                <!-- DATE DÉBUT -->
+                <div class="form-group">
+                    <label for="formationDate">Date de début</label>
+                    <input type="date" id="formationDate" required>
+                </div>
+
+                <!-- DATE FIN -->
+                <div class="form-group">
+                    <label for="formationDateFin">Date de fin</label>
+                    <input type="date" id="formationDateFin" required>
+                </div>
+
+                <!-- DURÉE -->
+                <div class="form-group">
+                    <label for="formationDuree">Durée</label>
+                    <input type="text" id="formationDuree" placeholder="Exemple : 3 mois" required>
+                </div>
+
+                <!-- FORMATEUR -->
+                <div class="form-group">
+                    <label for="formationFormateur">Formateur</label>
+                    <select id="formationFormateur" required>
+                        <option value="">Choisir un formateur</option>
+                        <!-- Rempli dynamiquement par JavaScript -->
+                    </select>
+                </div>
+
+                <!-- PRIX -->
+                <div class="form-group">
+                    <label for="formationPrix">Prix (DH)</label>
+                    <input type="number" id="formationPrix" min="0" placeholder="Exemple : 15000" required>
+                </div>
+
+                <!-- PLACES -->
+                <div class="form-group">
+                    <label for="formationPlaces">Nombre de places</label>
+                    <input type="number" id="formationPlaces" min="1" required>
+                </div>
+
+                <!-- BOUTONS -->
+                <div style="display:flex; gap:1rem; justify-content:flex-end;">
+                    <button type="button" class="btn btn-outline" id="cancelModalBtn">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         MODAL FORMATEUR (AJOUT / MODIFICATION)
+         ========================================== -->
+
+    <div class="modal" id="formateurModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="formateurModalTitle">Ajouter un formateur</h2>
+                <button class="modal-close" id="closeFormateurModalBtn">×</button>
+            </div>
+
+            <!-- FORMULAIRE FORMATEUR -->
+            <form id="formateurForm">
+                <input type="hidden" id="formateurId">
+
+                <!-- PRÉNOM -->
+                <div class="form-group">
+                    <label for="formateurPrenom">Prénom *</label>
+                    <input type="text" id="formateurPrenom" placeholder="Ex : Hassan" required>
+                </div>
+
+                <!-- NOM -->
+                <div class="form-group">
+                    <label for="formateurNom">Nom *</label>
+                    <input type="text" id="formateurNom" placeholder="Ex : El Amrani" required>
+                </div>
+
+                <!-- SPÉCIALITÉ -->
+                <div class="form-group">
+                    <label for="formateurSpecialite">Spécialité *</label>
+                    <select id="formateurSpecialite" required>
+                        <option value="">Sélectionner une spécialité</option>
+                        <option value="Cloud Computing & DevOps">Cloud Computing & DevOps</option>
+                        <option value="Cybersécurité">Cybersécurité</option>
+                        <option value="Développement Full Stack">Développement Full Stack</option>
+                        <option value="Intelligence Artificielle">Intelligence Artificielle</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="Réseaux & Systèmes">Réseaux & Systèmes</option>
+                    </select>
+                </div>
+
+                <!-- EXPÉRIENCE -->
+                <div class="form-group">
+                    <label for="formateurExperience">Années d'expérience *</label>
+                    <input type="number" id="formateurExperience" min="1" max="50" placeholder="Ex : 10" required>
+                </div>
+
+                <!-- BIOGRAPHIE -->
+                <div class="form-group">
+                    <label for="formateurBio">Biographie *</label>
+                    <textarea id="formateurBio" rows="4" placeholder="Décrivez l'expertise du formateur..." required></textarea>
+                </div>
+
+                <!-- CERTIFICATIONS -->
+                <div class="form-group">
+                    <label for="formateurCertifications">Certifications *</label>
+                    <input type="text" id="formateurCertifications" placeholder="Ex : AWS, CISSP, React (séparées par des virgules)" required>
+                </div>
+
+                <!-- EMAIL -->
+                <div class="form-group">
+                    <label for="formateurEmail">Email professionnel *</label>
+                    <input type="email" id="formateurEmail" placeholder="Ex : hassan@ziryabtec.com" required>
+                </div>
+
+                <!-- BOUTONS -->
+                <div style="display:flex; gap:1rem; justify-content:flex-end;">
+                    <button type="button" class="btn btn-outline" id="cancelFormateurModalBtn">Annuler</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
+
+    <script src="../../js/data.js"></script>
+    <script src="../../js/admin.js"></script>
+<script src="../../js/animations.js"></script>
+</body>
+</html>

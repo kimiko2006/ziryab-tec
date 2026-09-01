@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <!-- Fond principal -->
+    <rect width="100" height="100" rx="20" fill="#1a1a1a"/>
+    
+    <!-- Lettre Z stylisée -->
+    <path d="M 30 35 L 70 35 L 35 65 L 70 65" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Lettre T stylisée -->
+    <path d="M 55 35 L 55 65 M 45 35 L 65 35" fill="none" stroke="#4a90e2" stroke-width="6" stroke-linecap="round"/>
+    
+    <!-- Point d'accent -->
+    <circle cx="75" cy="25" r="5" fill="#4a90e2"/>
+</svg>

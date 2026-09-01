@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Formations - Ziryab Tec</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <nav class="navbar">
+
+            <div class="logo">
+                <span class="logo-icon">ZT</span>
+                <span>Ziryab Tec</span>
+            </div>
+
+            <ul class="nav-menu">
+                <li>
+                    <a href="../index.html">Accueil</a>
+                </li>
+
+                <li>
+                    <a href="formations.html" class="active">Formations</a>
+                </li>
+
+                <li>
+                    <a href="formateurs.html">Formateurs</a>
+                </li>
+
+                <li>
+                    <a href="partenaires.html">Partenaires</a>
+                </li>
+
+                <li>
+                    <a href="faq.html">FAQ</a>
+                </li>
+
+                <li>
+                    <a href="apropos.html">À propos</a>
+                </li>
+            </ul>
+
+            <div class="nav-actions">
+
+                <select class="language-selector">
+                    <option value="fr">FR</option>
+                    <option value="en">EN</option>
+                </select>
+
+                <a href="connexion.html" class="btn btn-outline">
+                    Connexion
+                </a>
+
+                <a href="inscription.html" class="btn btn-primary">
+                    Créer un compte
+                </a>
+
+            </div>
+
+        </nav>
+    </header>
+
+
+    <!-- CONTENU PRINCIPAL -->
+    <main>
+
+        <section class="formations-preview">
+
+            <h1>Nos Formations</h1>
+
+            <p style="text-align:center; margin-bottom:2rem; color:#666;">
+                Découvrez nos formations professionnelles en informatique.
+            </p>
+
+
+            <!-- RECHERCHE -->
+            <div class="search-filters">
+
+                <div class="search-bar">
+
+                    <span class="search-icon">🔍</span>
+
+                    <input
+                        type="text"
+                        id="searchFormation"
+                        placeholder="Rechercher une formation..."
+                    >
+
+                </div>
+
+
+                <!-- FILTRES -->
+                <div class="filters">
+
+                    <select id="categoryFilter" class="filter-select">
+
+                        <option value="all">
+                            Toutes les catégories
+                        </option>
+
+                        <option value="Cloud">
+                            Cloud
+                        </option>
+
+                        <option value="Cybersécurité">
+                            Cybersécurité
+                        </option>
+
+                        <option value="Développement">
+                            Développement
+                        </option>
+
+                        <option value="IA">
+                            Intelligence Artificielle
+                        </option>
+
+                        <option value="Réseaux">
+                            Réseaux
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- LISTE DES FORMATIONS -->
+            <div
+                class="formations-grid"
+                id="formationsList"
+            >
+
+                <!-- JavaScript va afficher les formations ici -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <div class="footer-section">
+
+                <h3>Ziryab Tec</h3>
+
+                <p>
+                    Centre de formation IT certifiant
+                </p>
+
+                <p>
+                    Formations en IA, Cloud & Cybersécurité
+                </p>
+
+            </div>
+
+
+            <div class="footer-section">
+
+                <h3>Contact</h3>
+
+                <p>📧 contact@ziryabtec.com</p>
+
+                <p>📞 +212 5 22 00 00 00</p>
+
+                <p>📍 Casablanca, Maroc</p>
+
+            </div>
+
+
+            <div class="footer-section">
+
+                <h3>Liens rapides</h3>
+
+                <ul>
+
+                    <li>
+                        <a href="../index.html">
+                            Accueil
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="formations.html">
+                            Formations
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="formateurs.html">
+                            Formateurs
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="faq.html">
+                            FAQ
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="footer-section">
+
+                <h3>Réseaux sociaux</h3>
+
+                <div class="social-links">
+
+                    <a href="#">
+                        LinkedIn
+                    </a>
+
+                    <a href="#">
+                        Facebook
+                    </a>
+
+                    <a href="#">
+                        Instagram
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                &copy; 2026 Ziryab Tec. Tous droits réservés.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="../js/data.js"></script>
+    <script src="../js/app.js"></script>
+
+</body>
+</html>

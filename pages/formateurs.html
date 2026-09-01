@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formateurs - Ziryab Tec</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         HEADER
+         ========================================== -->
+
+    <header class="header">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">ZT</span>
+                <span>Ziryab Tec</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="formations.html">Formations</a></li>
+                <li><a href="formateurs.html" class="active">Formateurs</a></li>
+                <li><a href="partenaires.html">Partenaires</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="apropos.html">À propos</a></li>
+            </ul>
+
+            <div class="nav-actions" id="navActions">
+                <select class="language-selector">
+                    <option value="fr">FR</option>
+                    <option value="en">EN</option>
+                </select>
+                <a href="connexion.html" class="btn btn-outline">Connexion</a>
+                <a href="inscription.html" class="btn btn-primary">Créer un compte</a>
+            </div>
+
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==========================================
+         SECTION HERO
+         ========================================== -->
+
+    <section class="hero" style="min-height: 400px;">
+        <div class="hero-content">
+            <h1>Nos Formateurs Experts</h1>
+            <p>Découvrez notre équipe de formateurs certifiés et passionnés qui vous accompagneront dans votre parcours.</p>
+        </div>
+        <div class="hero-image">
+            <div class="hero-placeholder" style="height: 300px;">
+                <span class="hero-icon">👨‍🏫</span>
+                <p>Experts certifiés</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         LISTE DES FORMATEURS
+         ========================================== -->
+
+    <section class="formateurs-section" style="padding: 4rem 5%; background: var(--white);">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">
+            Notre équipe pédagogique
+        </h2>
+
+        <!-- Barre de recherche -->
+        <div class="search-filters" style="max-width: 600px; margin: 0 auto 3rem;">
+            <div class="search-bar">
+                <span class="search-icon">🔎</span>
+                <input 
+                    type="text" 
+                    id="searchFormateur" 
+                    placeholder="Rechercher un formateur par nom ou spécialité..."
+                    oninput="filtrerFormateurs()"
+                >
+            </div>
+        </div>
+
+        <!-- Grille des formateurs -->
+        <div id="formateursGrid" class="formateurs-grid">
+            <!-- Rempli dynamiquement par JavaScript -->
+        </div>
+
+        <!-- Message si aucun formateur -->
+        <div id="noFormateurs" style="display: none; text-align: center; padding: 3rem; color: var(--gray);">
+            <p style="font-size: 1.5rem; margin-bottom: 1rem;">😕</p>
+            <p>Aucun formateur trouvé</p>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION POURQUOI NOS FORMATEURS
+         ========================================== -->
+
+    <section class="why-us">
+        <h2>Pourquoi nos formateurs ?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎓</div>
+                <h3>Certifiés internationalement</h3>
+                <p>Tous nos formateurs possèdent des certifications reconnues mondialement.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3>Expérience professionnelle</h3>
+                <p>Plus de 10 ans d'expérience en entreprise pour chacun de nos experts.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Accompagnement personnalisé</h3>
+                <p>Un suivi individuel pour chaque apprenant tout au long de sa formation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         APPEL À L'ACTION
+         ========================================== -->
+
+    <section class="cta">
+        <h2>Prêt à apprendre avec nos experts ?</h2>
+        <p>Rejoignez nos formations et bénéficiez de l'expertise de nos formateurs certifiés.</p>
+        <a href="formations.html" class="btn btn-primary">Voir nos formations</a>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Ziryab Tec</h3>
+                <p>Centre de formation IT certifiant</p>
+                <p>Formations en IA, Cloud & Cybersécurité</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>📧 contact@ziryabtec.com</p>
+                <p>📞 +212 5 22 00 00 00</p>
+                <p>📍 Casablanca, Maroc</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="formations.html">Formations</a></li>
+                    <li><a href="formateurs.html">Formateurs</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="apropos.html">À propos</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Réseaux sociaux</h3>
+                <div class="social-links">
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Facebook</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Ziryab Tec. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
+
+    <script src="../js/data.js"></script>
+    <script>
+        // ==========================================
+        // AFFICHER LES FORMATEURS
+        // ==========================================
+
+        function afficherFormateurs(formateurs) {
+            const container = document.getElementById('formateursGrid');
+            const noFormateurs = document.getElementById('noFormateurs');
+            
+            if (!container) return;
+
+            // Filtrer les formateurs actifs uniquement
+            const formateursActifs = formateurs.filter(f => f.status === 'active');
+
+            if (formateursActifs.length === 0) {
+                container.style.display = 'none';
+                noFormateurs.style.display = 'block';
+                return;
+            }
+
+            container.style.display = 'grid';
+            noFormateurs.style.display = 'none';
+
+            container.innerHTML = formateursActifs.map(formateur => `
+                <div class="formateur-card">
+                    <div class="formateur-avatar">
+                        ${formateur.prenom.charAt(0)}${formateur.nom.charAt(0)}
+                    </div>
+                    <h3 class="formateur-nom">${formateur.prenom} ${formateur.nom}</h3>
+                    <p class="formateur-specialite">${formateur.specialite}</p>
+                    <div class="formateur-info">
+                        <p><strong>Expérience :</strong> ${formateur.experience}</p>
+                    </div>
+                    <div class="formateur-certifications">
+                        ${formateur.certifications.map(cert => 
+                            `<span class="badge-certification">${cert}</span>`
+                        ).join('')}
+                    </div>
+                    <p class="formateur-bio">${formateur.biographie}</p>
+                    <button 
+                        class="btn btn-outline" 
+                        onclick="afficherDetailsFormateur(${formateur.id})"
+                        style="width: 100%;"
+                    >
+                        Voir le profil complet
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // ==========================================
+        // FILTRER LES FORMATEURS
+        // ==========================================
+
+        function filtrerFormateurs() {
+            const searchInput = document.getElementById('searchFormateur');
+            const recherche = searchInput.value.toLowerCase().trim();
+            
+            const formateurs = DataManager.getFormateurs();
+            
+            const resultats = formateurs.filter(formateur => {
+                const nomComplet = `${formateur.prenom} ${formateur.nom}`.toLowerCase();
+                return nomComplet.includes(recherche) ||
+                       formateur.specialite.toLowerCase().includes(recherche) ||
+                       formateur.certifications.some(cert => 
+                           cert.toLowerCase().includes(recherche)
+                       );
+            });
+            
+            afficherFormateurs(resultats);
+        }
+
+        // ==========================================
+        // AFFICHER LES DÉTAILS D'UN FORMATEUR
+        // ==========================================
+
+        function afficherDetailsFormateur(id) {
+            const formateur = DataManager.getFormateurById(id);
+            if (!formateur) return;
+            
+            alert(`
+                ${formateur.prenom} ${formateur.nom}
+                
+                Spécialité : ${formateur.specialite}
+                Expérience : ${formateur.experience}
+                
+                Certifications :
+                ${formateur.certifications.join('\n')}
+                
+                Biographie :
+                ${formateur.biographie}
+            `);
+        }
+
+        // ==========================================
+        // MENU MOBILE
+        // ==========================================
+
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const hamburger = document.getElementById('hamburger');
+            
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        // ==========================================
+        // INITIALISATION
+        // ==========================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const formateurs = DataManager.getFormateurs();
+            afficherFormateurs(formateurs);
+        });
+    </script>
+
+</body>
+
+</html>

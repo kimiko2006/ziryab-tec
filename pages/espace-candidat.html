@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Candidat - Ziryab Tec</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         HEADER
+         ========================================== -->
+
+    <header class="header">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">ZT</span>
+                <span>Ziryab Tec</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="formations.html">Formations</a></li>
+                <li><a href="formateurs.html">Formateurs</a></li>
+                <li><a href="partenaires.html">Partenaires</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="apropos.html">À propos</a></li>
+            </ul>
+
+            <div class="nav-actions" id="navActions">
+                <!-- Rempli dynamiquement par JavaScript -->
+            </div>
+
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==========================================
+         ESPACE CANDIDAT
+         ========================================== -->
+
+    <main style="min-height: 80vh; padding: 4rem 5%; background: var(--beige-light);">
+
+        <!-- En-tête de bienvenue -->
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">
+                👋 Bonjour, <span id="candidatNom">Candidat</span> !
+            </h1>
+            <p style="color: var(--gray); font-size: 1.1rem;">
+                Bienvenue dans votre espace personnel Ziryab Tec
+            </p>
+        </div>
+
+        <!-- Message d'erreur si non connecté -->
+        <div id="nonConnecte" style="display: none; text-align: center; padding: 3rem;">
+            <p style="font-size: 3rem; margin-bottom: 1rem;">🔒</p>
+            <h2 style="margin-bottom: 1rem;">Vous n'êtes pas connecté</h2>
+            <p style="color: var(--gray); margin-bottom: 2rem;">
+                Veuillez vous connecter pour accéder à votre espace personnel.
+            </p>
+            <a href="connexion.html" class="btn btn-primary">Se connecter</a>
+        </div>
+
+        <!-- Contenu de l'espace candidat -->
+        <div id="espaceCandidat" style="display: none;">
+
+            <!-- Cartes d'informations -->
+            <div class="stats-grid" style="max-width: 900px; margin: 0 auto 3rem;">
+                <div class="stat-card">
+                    <h3>Mes formations</h3>
+                    <div class="stat-number" id="nbFormations">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>En cours</h3>
+                    <div class="stat-number" id="nbEnCours">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Terminées</h3>
+                    <div class="stat-number" id="nbTerminees">0</div>
+                </div>
+            </div>
+
+            <!-- Informations personnelles -->
+            <div style="max-width: 900px; margin: 0 auto 3rem;">
+                <div style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                    <h2 style="margin-bottom: 1.5rem;">📋 Mes informations</h2>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <p style="color: var(--gray); font-size: 0.9rem;">Prénom</p>
+                            <p style="font-weight: 600;" id="infoPrenom">-</p>
+                        </div>
+                        <div>
+                            <p style="color: var(--gray); font-size: 0.9rem;">Nom</p>
+                            <p style="font-weight: 600;" id="infoNom">-</p>
+                        </div>
+                        <div>
+                            <p style="color: var(--gray); font-size: 0.9rem;">Email</p>
+                            <p style="font-weight: 600;" id="infoEmail">-</p>
+                        </div>
+                        <div>
+                            <p style="color: var(--gray); font-size: 0.9rem;">Téléphone</p>
+                            <p style="font-weight: 600;" id="infoTelephone">-</p>
+                        </div>
+                        <div>
+                            <p style="color: var(--gray); font-size: 0.9rem;">Date d'inscription</p>
+                            <p style="font-weight: 600;" id="infoDateInscription">-</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formations inscrites -->
+            <div style="max-width: 900px; margin: 0 auto 3rem;">
+                <div style="background: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                    <h2 style="margin-bottom: 1.5rem;">🎓 Mes formations</h2>
+                    
+                    <div id="mesFormations">
+                        <!-- Rempli dynamiquement par JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <a href="formations.html" class="btn btn-primary" style="margin-right: 1rem;">
+                    Découvrir les formations
+                </a>
+                <button onclick="deconnexion()" class="btn btn-outline">
+                    🚪 Déconnexion
+                </button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Ziryab Tec</h3>
+                <p>Centre de formation IT certifiant</p>
+                <p>Formations en IA, Cloud & Cybersécurité</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>📧 contact@ziryabtec.com</p>
+                <p>📞 +212 5 22 00 00 00</p>
+                <p>📍 Casablanca, Maroc</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="formations.html">Formations</a></li>
+                    <li><a href="formateurs.html">Formateurs</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Ziryab Tec. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
+
+    <script src="../js/data.js"></script>
+    <script>
+        // ==========================================
+        // VÉRIFIER LA CONNEXION
+        // ==========================================
+
+        function verifierConnexion() {
+            const utilisateurConnecte = localStorage.getItem('currentUser');
+            
+            if (!utilisateurConnecte) {
+                // Afficher le message "non connecté"
+                document.getElementById('nonConnecte').style.display = 'block';
+                document.getElementById('espaceCandidat').style.display = 'none';
+                return null;
+            }
+            
+            const utilisateur = JSON.parse(utilisateurConnecte);
+            
+            // Vérifier que c'est bien un candidat
+            if (utilisateur.role !== 'candidat' && utilisateur.role !== 'admin') {
+                document.getElementById('nonConnecte').style.display = 'block';
+                document.getElementById('espaceCandidat').style.display = 'none';
+                return null;
+            }
+            
+            // Afficher l'espace candidat
+            document.getElementById('nonConnecte').style.display = 'none';
+            document.getElementById('espaceCandidat').style.display = 'block';
+            
+            return utilisateur;
+        }
+
+        // ==========================================
+        // AFFICHER LES INFORMATIONS
+        // ==========================================
+
+        function afficherInformations(utilisateur) {
+            // Nom dans l'en-tête
+            document.getElementById('candidatNom').textContent = 
+                utilisateur.prenom || 'Candidat';
+            
+            // Informations personnelles
+            document.getElementById('infoPrenom').textContent = utilisateur.prenom || '-';
+            document.getElementById('infoNom').textContent = utilisateur.nom || '-';
+            document.getElementById('infoEmail').textContent = utilisateur.email || '-';
+            document.getElementById('infoTelephone').textContent = utilisateur.telephone || 'Non renseigné';
+            document.getElementById('infoDateInscription').textContent = utilisateur.dateCreation || '-';
+            
+            // Navigation
+            updateNavigation(utilisateur);
+        }
+
+        // ==========================================
+        // METTRE À JOUR LA NAVIGATION
+        // ==========================================
+
+        function updateNavigation(utilisateur) {
+            const navActions = document.getElementById('navActions');
+            
+            navActions.innerHTML = `
+                <select class="language-selector">
+                    <option value="fr">FR</option>
+                    <option value="en">EN</option>
+                </select>
+                <a href="espace-candidat.html" class="btn btn-outline">Mon Espace</a>
+                ${utilisateur.role === 'admin' ? 
+                    '<a href="admin/dashboard.html" class="btn btn-primary">Dashboard</a>' : ''}
+                <button onclick="deconnexion()" class="btn btn-outline">Déconnexion</button>
+            `;
+        }
+
+        // ==========================================
+        // AFFICHER LES FORMATIONS DU CANDIDAT
+        // ==========================================
+
+        function afficherMesFormations(utilisateur) {
+            const container = document.getElementById('mesFormations');
+            
+            // Récupérer les inscriptions de l'utilisateur
+            const inscriptions = DataManager.getInscriptionsByUser(utilisateur.id);
+            
+            // Mettre à jour les statistiques
+            document.getElementById('nbFormations').textContent = inscriptions.length;
+            document.getElementById('nbEnCours').textContent = 
+                inscriptions.filter(i => i.statut === 'confirmee').length;
+            document.getElementById('nbTerminees').textContent = 
+                inscriptions.filter(i => i.statut === 'terminee').length;
+            
+            if (inscriptions.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 2rem; color: var(--gray);">
+                        <p style="font-size: 2rem; margin-bottom: 1rem;">📚</p>
+                        <p>Vous n'êtes inscrit à aucune formation pour le moment.</p>
+                        <a href="formations.html" class="btn btn-primary" style="margin-top: 1rem;">
+                            Voir les formations
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Afficher les formations
+            container.innerHTML = inscriptions.map(inscription => {
+                const formation = DataManager.getFormationById(inscription.formationId);
+                if (!formation) return '';
+                
+                return `
+                    <div style="
+                        background: var(--beige-light);
+                        padding: 1.5rem;
+                        border-radius: var(--border-radius);
+                        margin-bottom: 1rem;
+                        border-left: 4px solid var(--blue-accent);
+                    ">
+                        <h3 style="margin-bottom: 0.5rem;">${formation.nom}</h3>
+                        <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 0.5rem;">
+                            ${formation.categorie} | ${formation.niveau}
+                        </p>
+                        <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">
+                            <strong>Début :</strong> ${formation.dateDebut} | 
+                            <strong>Fin :</strong> ${formation.dateFin}
+                        </p>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem;">
+                            <strong>Statut :</strong> 
+                            <span class="status-badge status-${inscription.statut}">
+                                ${inscription.statut}
+                            </span>
+                        </p>
+                        <a href="formation-detail.html?id=${formation.id}" class="btn btn-outline btn-sm">
+                            Voir la formation
+                        </a>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ==========================================
+        // DÉCONNEXION
+        // ==========================================
+
+        function deconnexion() {
+            localStorage.removeItem('currentUser');
+            window.location.href = '../index.html';
+        }
+
+        // ==========================================
+        // MENU MOBILE
+        // ==========================================
+
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const hamburger = document.getElementById('hamburger');
+            
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        // ==========================================
+        // INITIALISATION
+        // ==========================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const utilisateur = verifierConnexion();
+            
+            if (utilisateur) {
+                afficherInformations(utilisateur);
+                afficherMesFormations(utilisateur);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
